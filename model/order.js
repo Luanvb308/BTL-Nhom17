@@ -27,7 +27,7 @@ const orderSchema = new mongoose.Schema(
 );
 
 // Tạo mô hình Location
-const OderModel = mongoose.model('Order', orderSchema);
+const OrderModel = mongoose.model('Order', orderSchema);
 
 // Xuất mô hình để sử dụng trong các file khác
 module.exports = { OrderModel };  // Đảm bảo xuất mô hình LocationModel
