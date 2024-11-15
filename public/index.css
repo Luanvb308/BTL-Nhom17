@@ -1,3 +1,5 @@
+/* Dashboard container styling */
+
 .top-menu {
     width: 100%;
     background-color: #333;
@@ -27,4 +29,30 @@
 .top-menu a:hover {
     color: #ffcc00; /* Light yellow on hover */
     border-bottom: 2px solid #ffcc00; /* Underline effect */
+}
+.dashboard-container {
+    text-align: center;
+}
+
+.dashboard-container h1 {
+    font-size: 80px; /* Tăng kích thước chữ */
+    font-weight: bold;
+    color: #ff6600;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    animation: colorChange 2s infinite, glow 1.5s infinite;
+}
+
+/* Hiệu ứng nháy đổi màu */
+@keyframes colorChange {
+    0% { color: #ff6600; }
+    25% { color: #ffcc00; }
+    50% { color: #33cc33; }
+    75% { color: #3399ff; }
+    100% { color: #ff6600; }
+}
+
+/* Hiệu ứng phát sáng nhấp nháy */
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 10px rgba(255, 102, 0, 0.8); }
+    50% { text-shadow: 0 0 20px rgba(255, 255, 102, 1); }
 }

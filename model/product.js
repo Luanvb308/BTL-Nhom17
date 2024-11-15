@@ -4,12 +4,22 @@ const db = require('../db/index');
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
-    id: { type: String, maxLength: 255 },
-    brand: { type: String, maxLength: 255 },
-    name: { type: String, maxLength: 255 },
-    image: { type: String, maxLength: 255 },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
+    _id:{ type: String , require : true },
+    name: { type: String, required: true },
+    hardness: { type: String, required: false },
+    racketFrame: { type: String, required: false },
+    weight: { type: Number, required: false },
+    balance: { type: String, required: false },
+    swing: { type: String, required: false },
+    maxStrength: { type: Number, required: false },
+    color: { type: String, required: false },
+    manufacture: { type: String, required: false },
+    brand: { type: String, required: false },
+    image: { type: String, required: false },
+    price: { type: Number, required: false },
+    quantity: { type: Number, required: false },
+    description: { type: String, required: false }
+
 }, {
     collection: "Product",
 });

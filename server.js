@@ -3,8 +3,8 @@ const session = require('express-session');
 const path = require('path');
 const app = express();
 const { connect } = require('./db/index');
-
-
+const productRouter = require('./router/product');
+const indexRouter = require('./router/index');
 // Cấu hình express-session
 app.use(session({
   secret: 'your-secret-key',  // Thay 'your-secret-key' bằng một chuỗi bí mật an toàn
@@ -15,6 +15,7 @@ app.use(session({
 const cors = require('cors');
 app.use(cors());
 
+app.use(express.static('public'));
 
 // Cấu hình thư mục chứa các file tĩnh và views
 app.use(express.static('public'));
@@ -24,10 +25,11 @@ app.set('view engine', 'ejs');
 // Middleware để phân tích dữ liệu từ các yêu cầu POST
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 // Kết nối đến cơ sở dữ liệu
 connect();
-
+app.use('/', indexRouter);
+app.use('/',productRouter);
+app.use('/product', productRouter);
 
 // Khởi động server
 const PORT = 3000;

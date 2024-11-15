@@ -1,0 +1,86 @@
+/* Reset some default margin/padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container for the product details */
+.product-detail {
+    display: flex;  /* Use Flexbox for the layout */
+    justify-content: space-between;  /* Space between the two sections */
+    align-items: flex-start;  /* Align items at the start of the container */
+    padding: 20px;
+    border: 2px solid #5050cc;  /* Orange border for the entire container */
+    border-radius: 20px;  /* Make border corners more rounded */
+    margin: 20px auto;
+    max-width: 1200px;  /* Optional: Set a max-width for better responsiveness */
+    background-color: #ffebcd;  /* Light orange background */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);  /* Stronger box shadow for a clearer 3D effect */
+}
+
+/* Styling for the product image section */
+.product-image {
+    flex: 1;  /* Make the image section take up 50% of the container */
+    max-width: 500px;  /* Limit max-width of the image section */
+    margin-right: 20px;  /* Add space between the image and the text */
+    text-align: center;
+    border-right: 2px solid #2e0973;  /* Orange border between image and text */
+    padding-right: 20px;  /* Add space between image and the text */
+}
+
+.product-img {
+    width: 100%;  /* Make image take full width of its container */
+    height: auto;  /* Maintain the aspect ratio */
+    border: 2px solid #ff6f00;  /* Orange border around the image */
+    border-radius: 20px;  /* More rounded corners for the image */
+}
+
+/* Styling for the product information section */
+.product-info {
+    flex: 2;  /* Make the info section take up 2x the space of the image section */
+    max-width: 700px;  /* Limit max-width of the content */
+    font-family: Arial, sans-serif;  /* Set font for the product details */
+    color: #333;  /* Dark gray text color for better readability */
+    border-left: 2px solid #ff6f00;  /* Orange border between image and text */
+    padding-left: 20px;  /* Add padding between the border and the text */
+}
+
+/* Product information heading */
+.product-info h1 {
+    font-size: 2.5em;  /* Increase the font size of the product name */
+    margin-bottom: 20px;
+    color: #ff6f00;  /* Set the product name color to orange */
+    font-weight: bold;  /* Make the product name bold */
+}
+
+/* Style each product detail paragraph */
+.product-info p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+/* Style for the back to product list button */
+.product-actions {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.product-actions .btn-back {
+    padding: 10px 20px;
+    background-color: #ff6f00;  /* Orange background color */
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for the button */
+    border: 2px solid #ff6f00;  /* Orange border around the button */
+}
+
+.product-actions .btn-back:hover {
+    background-color: #e65c00;  /* Darker shade of orange when hovered */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);  /* Darker shadow on hover */
+}

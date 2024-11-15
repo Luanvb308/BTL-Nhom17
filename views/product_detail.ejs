@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/productdetail.css">
+</head>
+<body>
+    <!-- Menu on top -->
+    <div class="top-menu">
+        <ul>
+            <li><a href="/index">User</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#employee">Employee</a></li>
+            <li><a href="/product">Product</a></li>
+            <li><a href="#order">Order</a></li>
+        </ul>
+    </div>
+
+    <div class="product-detail">
+        <!-- Product Image Section -->
+        <div class="product-image">
+            <img src="<%= product.image %>" alt="<%= product.name %>" class="product-img">
+            <!-- Button to go back to product list -->
+            <div class="product-actions">
+                <a href="/product" class="btn btn-back">Back to Product List</a>
+            </div>
+        </div>
+    
+        <!-- Product Information Section -->
+        <div class="product-info">
+            <h1><%= product.name %></h1>
+            <p><strong>ID : </strong> <%= product._id %></p>
+            <p><strong>Hardness:</strong> <%= product.hardness %></p>
+            <p><strong>Racket Frame:</strong> <%= product.racketFrame %></p>
+            <p><strong>Weight:</strong> <%= product.weight %> grams</p>
+            <p><strong>Balance:</strong> <%= product.balance %></p>
+            <p><strong>Swing:</strong> <%= product.swing %></p>
+            <p><strong>Max Strength:</strong> <%= product.maxStrength %> lbs</p>
+            <p><strong>Color:</strong> <%= product.color %></p>
+            <p><strong>Manufacture:</strong> <%= product.manufacture %></p>
+            <p><strong>Brand:</strong> <%= product.brand %></p>
+            <p><strong>Price:</strong> <%= product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) %></p>
+            <p><strong>Quantity:</strong> <%= product.quantity %></p>
+            <p><strong>Description:</strong> <%= product.description %></p>
+        </div>
+    </div>
+    
+</body>
+</html>
