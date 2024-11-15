@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quan Li Du Lieu</title>
+    <title>Order List</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  <!-- Thêm thư viện Chart.js -->
 </head>
 <body>
-    <!-- Menu trên cùng -->
-    <div class="top-menu">
+     <!-- Menu trên cùng -->
+     <div class="top-menu">
         <ul>
             <li><a href="#user">User</a></li>
             <li><a href="#location">Location</a></li>
@@ -17,38 +18,115 @@
             <li><a href="#order">Order</a></li>
         </ul>
     </div>
-
     <div class="container">
         <div class="header">
-            <h1>Contacts</h1>
+            <h1>Order List</h1>
             <div class="actions">
-                <button>Create </button>
+                <button><a href="/create-order">Create Order</a></button>
             </div>
+            
         </div>
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>NAME</th>
-                        <th>EMAIL</th>
-                        <th>CITY</th>
-                        <th>PASSWORD</th>
-                        <th>ACTIONS</th>
+                        <th>Username</th>
+                        <th>Position</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Month</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><i class="fas fa-user-circle"></i> Brian Halligan (Sample)</td>
-                        <td>bh@hubspot.com</td>
-                        <td>Lead</td>
-                        <td>No owner</td>
-                        <td>
-                            <button class="edit-button">edit</button>
-                            <button class="delete-button">delete</button>
-                        </td></td>
-                    </tr>
+                    <% orders.forEach(order => { %>
+                        <tr id="order-<%= order._id %>">
+                            <td><%= order.username %></td>
+                            <td><%= order.position %></td>
+                            <td><%= order.quantity %></td>
+                            <td><%= order.total %></td>
+                            <td><%= order.month %></td>
+                            <td>
+                                <button onclick="editOrder('<%= order._id %>')">Edit</button>
+                                <button onclick="deleteOrder('<%= order._id %>')">Delete</button>
+                            </td>
+                        </tr>
+                    <% }) %>
                 </tbody>
             </table>
         </div>
+        
+        <!-- Biểu đồ doanh thu theo tháng -->
+        <div class="chart-container" style="width: 80%; margin: 50px auto;">
+            <canvas id="revenueChart"></canvas>
+        </div>
+
+        <script>
+            // Tháng 1 đến tháng 12
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        
+            // Dữ liệu doanh thu đã chia cho 1000 để hiển thị nghìn VND
+            const revenueData = <%= JSON.stringify(revenueByMonthInThousands) %>; // Dữ liệu doanh thu
+        
+            const ctx = document.getElementById('revenueChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: months, // Các tháng từ tháng 1 đến tháng 12
+                    datasets: [{
+                        label: 'Revenue by Month (in Thousand VND)',  // Tiêu đề của biểu đồ
+                        data: revenueData,  // Dữ liệu doanh thu theo tháng
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Revenue (Thousand VND)'  // Tiêu đề trục Y
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return value + 'k';  // Định dạng với ký tự 'k' cho nghìn
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            async function deleteOrder(orderId) {
+        if (confirm('Are you sure you want to delete this order?')) {
+            try {
+                const response = await fetch(`/delete-order/${orderId}`, {
+                    method: 'DELETE',
+                });
+
+                if (response.ok) {
+                    // Xóa hàng khỏi bảng
+                    const row = document.getElementById(`order-${orderId}`);
+                    if (row) row.remove();
+
+                    alert('Order deleted successfully');
+                } else {
+                    const errorData = await response.json();
+                    alert(`Failed to delete order: ${errorData.message}`);
+                }
+            } catch (error) {
+                alert('An error occurred while deleting the order.');
+                console.error(error);
+            }
+        }
+    }
+    function editOrder(orderId) {
+        // Chuyển đến trang chỉnh sửa với ID của order
+        window.location.href = `/edit-order/${orderId}`;
+    }
+        </script>
+    </div>
 </body>
 </html>
