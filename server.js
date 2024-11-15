@@ -12,6 +12,9 @@ app.use(session({
   saveUninitialized: true,    // Lưu session khi chưa khởi tạo
   cookie: { secure: false }   // Nếu bạn sử dụng HTTPS, set 'secure: true'
 }));
+const cors = require('cors');
+app.use(cors());
+
 
 // Cấu hình thư mục chứa các file tĩnh và views
 app.use(express.static('public'));
