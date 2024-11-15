@@ -18,7 +18,7 @@ router.post('/create-order', async (req, res) => {
             month,
         });
         await newOrder.save(); // Lưu đơn hàng vào database
-        res.redirect('/orders'); // Điều hướng về trang danh sách đơn hàng sau khi tạo thành công
+        res.redirect('/order'); // Điều hướng về trang danh sách đơn hàng sau khi tạo thành công
     } catch (error) {
         console.error(error);
         res.status(500).send('Có lỗi xảy ra khi tạo đơn hàng');
