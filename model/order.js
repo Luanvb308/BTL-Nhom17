@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema(
     {
+        id: {
+            type: String,
+            required: [true, 'Position is required'],
+        },
         username: {
             type: String,
             required: [true, 'Position is required'],
