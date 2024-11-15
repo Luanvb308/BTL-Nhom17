@@ -132,3 +132,7 @@ th {
 .top-menu a:hover {
     color: #ddd;
 }
+a{
+    text-decoration: none;
+    color: white;
+}

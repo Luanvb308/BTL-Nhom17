@@ -12,11 +12,15 @@ const orderSchema = new mongoose.Schema(
             required: [true, 'Map is required'],
         },
         quantity: {
-            type: String,
+            type: Number,
             required: [true, 'SDT is required'],
         },
         total: {
-            type: String,
+            type: Number,
+            required: [true, 'City is required'],
+        },
+        month: {
+            type: Number,
             required: [true, 'City is required'],
         },
     },
