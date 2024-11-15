@@ -1,33 +1,33 @@
 
 const mongoose = require('mongoose');
 
-const employeeSchema = new mongoose.Schema(
+const orderSchema = new mongoose.Schema(
     {
-        id: {
+        username: {
             type: String,
             required: [true, 'Position is required'],
         },
-        name: {
+        position: {
             type: String,
             required: [true, 'Map is required'],
         },
-        sdt: {
+        quantity: {
             type: String,
             required: [true, 'SDT is required'],
         },
-        city: {
+        total: {
             type: String,
             required: [true, 'City is required'],
         },
     },
     {
-        collection: 'Employee',
+        collection: 'Order',
         timestamps: true,
     }
 );
 
 // Tạo mô hình Location
-const EmployeeModel = mongoose.model('Employee', employeeSchemaSchema);
+const OderModel = mongoose.model('Order', orderSchema);
 
 // Xuất mô hình để sử dụng trong các file khác
-module.exports = { EmployeeModel };  // Đảm bảo xuất mô hình LocationModel
+module.exports = { OrderModel };  // Đảm bảo xuất mô hình LocationModel
