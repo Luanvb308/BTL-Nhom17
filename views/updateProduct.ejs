@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <link rel="stylesheet" href="/updateProduct.css">
+</head>
+<body>
+
+    <!-- Form sửa sản phẩm -->
+    <form action="/product/update/<%= product._id %>" method="POST" enctype="application/x-www-form-urlencoded">
+        <!-- Phần thông tin cơ bản -->
+        <h1>Update Product</h1>
+        <div class="form-section">
+            <h2>Basic Information</h2>
+
+            <!-- ID sản phẩm (ẩn trong form nhưng gửi trong request) -->
+            <input type="hidden" name="_id" value="<%= product._id %>">
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<%= product.name %>" required><br><br>
+
+            <label for="hardness">Hardness:</label>
+            <input type="text" id="hardness" name="hardness" value="<%= product.hardness %>" required><br><br>
+
+            <label for="racketFrame">Racket Frame:</label>
+            <input type="text" id="racketFrame" name="racketFrame" value="<%= product.racketFrame %>" required><br><br>
+
+            <label for="weight">Weight:</label>
+            <input type="number" id="weight" name="weight" value="<%= product.weight %>" required><br><br>
+        </div>
+
+        <!-- Phần thông tin bổ sung -->
+        <div class="form-section">
+            <h2>Additional Details</h2>
+
+            <label for="balance">Balance:</label>
+            <input type="text" id="balance" name="balance" value="<%= product.balance %>" required><br><br>
+
+            <label for="swing">Swing:</label>
+            <input type="text" id="swing" name="swing" value="<%= product.swing %>" required><br><br>
+
+            <label for="maxStrength">Max Strength:</label>
+            <input type="number" id="maxStrength" name="maxStrength" value="<%= product.maxStrength %>" required><br><br>
+
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color" value="<%= product.color %>" required><br><br>
+
+            <label for="manufacture">Manufacture:</label>
+            <input type="text" id="manufacture" name="manufacture" value="<%= product.manufacture %>" required><br><br>
+
+            <label for="brand">Brand:</label>
+            <input type="text" id="brand" name="brand" value="<%= product.brand %>" required><br><br>
+
+            <label for="image">Image URL:</label>
+            <input type="text" id="image" name="image" value="<%= product.image %>" required><br><br>
+
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" value="<%= product.price %>" required><br><br>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" value="<%= product.quantity %>" required><br><br>
+
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" required><%= product.description %></textarea><br><br>
+        </div>
+
+        <!-- Nút gửi form và quay lại trang sản phẩm -->
+        <div class="button-container">
+            <button type="submit">Update Product</button>
+            <button type="button" onclick="window.location.href='/product';">Return to Products</button>
+        </div>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quan Li Du Lieu</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="product.css">
+</head>
+<body>
+    <!-- Menu trên cùng -->
+    <div class="top-menu">
+        <ul>
+            <li><a href="/index">User</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#employee">Employee</a></li>
+            <li><a href="/product">Product</a></li>
+            <li><a href="#order">Order</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <!-- Nút thêm sản phẩm -->
+            <button class="btn btn-add-product"> <a href="/addProduct">Add Product</a></button>
+    
+            <!-- Phần tìm kiếm -->
+            <div class="search-box">
+                <h3>Search Products</h3>
+                
+                <!-- Tìm theo tên -->
+                <input type="text" id="search-name" class="search-input" placeholder="Search by Name">
+    
+                <!-- Tìm theo giá -->
+                <input type="number" id="search-price" class="search-input" placeholder="Max Price">
+    
+                <!-- Tìm theo hãng -->
+                <input type="text" id="search-brand" class="search-input" placeholder="Search by Brand">
+    
+                <!-- Nút tìm kiếm -->
+                <button class="btn btn-search" onclick="searchProducts()">Search</button>
+            </div>
+        </div>
+    
+        <!-- Danh sách sản phẩm -->
+        <div class="product-list">
+            <% if (products.length > 0) { %>
+                <div class="product-container">
+                    <% products.forEach((product, index) => { %>
+                        <% if (index % 2 === 0 && index !== 0) { %>
+                            </div><div class="product-container">
+                        <% } %>
+                        <div class="product-item">
+                            <a href="" class="product-link">
+                                <img src="<%= product.image %>" alt="<%= product.name %>" class="product-image">
+                                <div class="product-info">
+                                    <h2 class="product-name"><%= product.name %></h2>
+                                    <p class="product-price"><%= product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }) %></p>
+                                </div>
+                            </a>
+                            <div class="product-actions">
+                                <a href="/product/<%= product._id %>" class="btn btn-view-details">View Details</a>
+                                <a href="/product/update/<%= product._id %>" class="btn btn-update">Update</a>
+                                <a href="/product/delete/<%= product._id %>" class="btn btn-delete">Delete</a>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } else { %>
+                <p>No products available.</p>
+            <% } %>
+        </div>
+    </div>
+    
+    
+    </div>
+    <script>
+        function searchProducts() {
+            // Lấy giá trị từ các trường input
+            const name = document.getElementById("search-name").value;
+            const price = document.getElementById("search-price").value;
+            const brand = document.getElementById("search-brand").value;
+    
+            // Tạo URL tìm kiếm với các tham số query
+            let url = "/search-products?";
+    
+            if (name) url += "name=" + name + "&";
+            if (price) url += "price=" + price + "&";
+            if (brand) url += "brand=" + brand + "&";
+    
+            // Chuyển hướng đến URL tìm kiếm
+            window.location.href = url;
+        }
+    </script>
+    
+</body>
+</html>
