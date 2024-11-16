@@ -17,7 +17,7 @@ const createOrder = async (req, res) => {
             month,
         });
         await newOrder.save(); // Lưu đơn hàng vào database
-        res.redirect('/orders'); // Điều hướng về trang danh sách đơn hàng sau khi tạo thành công
+        res.redirect('/order'); // Điều hướng về trang danh sách đơn hàng sau khi tạo thành công
     } catch (error) {
         console.error(error);
         res.status(500).send('Có lỗi xảy ra khi tạo đơn hàng');
@@ -91,7 +91,7 @@ const editOrder = async (req, res) => {
             return res.status(404).send('Order not found');
         }
 
-        res.redirect('/orders'); // Chuyển hướng về trang danh sách orders
+        res.redirect('/order'); // Chuyển hướng về trang danh sách orders
     } catch (error) {
         console.error('Error updating order:', error);
         res.status(500).send('Error updating order');

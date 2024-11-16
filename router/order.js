@@ -96,7 +96,7 @@ router.post('/edit-order/:id', async (req, res) => {
         }
 
         // Redirect lại trang danh sách order hoặc gửi phản hồi thành công
-        res.redirect('/orders'); // Chuyển hướng về trang danh sách orders
+        res.redirect('/order'); // Chuyển hướng về trang danh sách orders
     } catch (error) {
         console.error('Error updating order:', error);
         res.status(500).send('Error updating order');

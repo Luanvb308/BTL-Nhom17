@@ -1,37 +1,4 @@
-.top-menu {
-    width: 100%;
-    background-color: #333;
-    padding: 24px 0; /* Tăng padding để làm menu rộng hơn */
-    border-radius: 5px;
-}
 
-.top-menu ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-}
-
-.top-menu li {
-    margin-right: 40px; /* Tăng khoảng cách giữa các mục */
-}
-
-.top-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-    padding: 10px 15px; /* Thêm padding để làm cho liên kết rộng hơn */
-    text-transform: uppercase; /* Viết hoa tất cả các chữ */
-}
-
-.top-menu a:hover {
-    color: #ffcc00; /* Light yellow on hover */
-    border-bottom: 2px solid #ffcc00; /* Underline effect */
-}
-a{
-    text-decoration: none;
-    color: white;
-}
 /*  */
 /* h1 {
     font-size: 24px;
