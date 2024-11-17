@@ -1,0 +1,38 @@
+<!-- employeeAdd.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Employee</title>
+  <link rel="stylesheet" href="/employeeAdd.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Add New Employee</h1>
+
+    <form action="/employee" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="phone">Phone:</label>
+      <input type="text" id="phone" name="phone" required>
+
+      <label for="age">Age:</label>
+      <input type="text" id="age" name="age" required>
+
+      <label for="position">Position:</label>
+      <input type="text" id="position" name="position" required>
+
+      <label for="shopName">Shop Name:</label>
+      <input type="text" id="shopName" name="shopName" required>
+
+      <button type="submit" class="btn submit-btn">Add Employee</button>
+    </form>
+
+    <a href="/employee">
+      <button class="btn back-btn">Back to Employee List</button>
+    </a>
+  </div>
+</body>
+</html>

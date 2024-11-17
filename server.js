@@ -5,7 +5,7 @@ const app = express();
 const { connect } = require('./db/index');
 const productRouter = require('./router/product');
 const indexRouter = require('./router/index');
-
+const employeeRoutes = require('./router/employee'); 
 const orderRouter = require('./router/order');  // Đảm bảo đường dẫn đúng
 // Cấu hình express-session
 app.use(session({
@@ -16,7 +16,6 @@ app.use(session({
 }));
 const cors = require('cors');
 app.use(cors());
-
 app.use(express.static('public'));
 
 // Thay vì dùng 'views', bạn sử dụng 'view' nếu đó là thư mục chứa tệp EJS
@@ -40,7 +39,7 @@ app.use('/',productRouter);
 app.use('/product', productRouter);
 // Sử dụng router
 app.use(orderRouter);
-
+app.use('/', employeeRoutes);
 // Khởi động server
 const PORT = 3000;
 app.listen(PORT, () => {

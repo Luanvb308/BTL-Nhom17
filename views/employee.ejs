@@ -1,0 +1,55 @@
+<!-- employee.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee List</title>
+  <link rel="stylesheet" href="/employee.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Employee List</h1>
+    
+    <!-- Nút thêm nhân viên -->
+    <div class="add-new-btn-container">
+      <a href="/employee/new">
+        <button class="btn add-new-btn">Add New Employee</button>
+      </a>
+    </div>
+
+    <!-- Bảng nhân viên -->
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Age</th>
+          <th>Position</th>
+          <th>Shop</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% employees.forEach(employee => { %>
+          <tr>
+            <td><%= employee.name %></td>
+            <td><%= employee.phone %></td>
+            <td><%= employee.age %></td>
+            <td><%= employee.position %></td>
+            <td><%= employee.shopName %></td>
+            <td class="action-buttons">
+              <a href="/employee/edit/<%= employee._id %>">
+                <button class="btn edit-btn">Edit</button>
+              </a>
+              <a href="/employee/delete/<%= employee._id %>">
+                <button class="btn delete-btn">Delete</button>
+              </a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
