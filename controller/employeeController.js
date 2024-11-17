@@ -4,6 +4,7 @@ const { EmployeeModel } = require('../model/employee');
 const getAllEmployees = async (req, res) => {
     try {
         const employees = await EmployeeModel.find();
+        res.status(200).json(employees); 
         res.render('employee', { employees });
     } catch (err) {
         console.error(err);

@@ -26,5 +26,7 @@ router.post('/employee/edit/:id', updateEmployee);
 
 // Route để xóa nhân viên
 router.get('/employee/delete/:id', deleteEmployee);
+router.get('/api/employees', getAllEmployees);
+
 
 module.exports = router;
