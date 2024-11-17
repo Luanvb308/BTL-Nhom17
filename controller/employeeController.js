@@ -4,14 +4,22 @@ const { EmployeeModel } = require('../model/employee');
 const getAllEmployees = async (req, res) => {
     try {
         const employees = await EmployeeModel.find();
-        res.status(200).json(employees); 
         res.render('employee', { employees });
     } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error');
     }
 };
-
+const getAllEmployee = async (req, res) => {
+    try {
+        const employees = await EmployeeModel.find();
+        res.status(200).json(employees);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    }
+};
+ 
 // Hiển thị form thêm nhân viên
 const showNewEmployeeForm = (req, res) => {
     res.render('employeeAdd');  
@@ -92,4 +100,5 @@ module.exports = {
     showEditEmployeeForm,
     updateEmployee,
     deleteEmployee,
+    getAllEmployee
 };

@@ -6,7 +6,8 @@ const {
     createNewEmployee,
     showEditEmployeeForm,
     updateEmployee,
-    deleteEmployee
+    deleteEmployee,
+    getAllEmployee
 } = require('../controller/employeeController');
 
 // Route để lấy danh sách nhân viên
@@ -26,7 +27,7 @@ router.post('/employee/edit/:id', updateEmployee);
 
 // Route để xóa nhân viên
 router.get('/employee/delete/:id', deleteEmployee);
-router.get('/api/employees', getAllEmployees);
+router.get('/api/employees', getAllEmployee);
 
 
 module.exports = router;
