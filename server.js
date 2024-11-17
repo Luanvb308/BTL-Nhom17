@@ -6,6 +6,7 @@ const { connect } = require('./db/index');
 const productRouter = require('./router/product');
 const indexRouter = require('./router/index');
 
+const locationRouter = require('./router/location')
 const orderRouter = require('./router/order');  // Đảm bảo đường dẫn đúng
 // Cấu hình express-session
 app.use(session({
@@ -38,6 +39,7 @@ connect();
 app.use('/', indexRouter);
 app.use('/',productRouter);
 app.use('/product', productRouter);
+app.use( locationRouter);
 // Sử dụng router
 app.use(orderRouter);
 

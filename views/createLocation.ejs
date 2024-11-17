@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Location</title>
+    <link rel="stylesheet" href="createLocation.css"> <!-- Thay đường dẫn nếu cần -->
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Location</h1>
+        <form action="/create-location" method="POST">
+            <label for="position">Position:</label>
+            <input type="text" id="position" name="position" required>
+            
+            <label for="map">Map:</label>
+            <input type="text" id="map" name="map" required>
+            
+            <label for="sdt">Phone:</label>
+            <input type="text" id="sdt" name="sdt" required>
+            
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+            
+            <button type="submit">Save</button>
+        </form>
+        <a href="/locations" class="btn-back">Back to List</a>
+    </div>
+</body>
+</html>
