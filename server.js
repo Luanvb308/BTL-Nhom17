@@ -8,10 +8,6 @@ const indexRouter = require('./router/index');
 
 const locationRouter = require('./router/location')
 const orderRouter = require('./router/order');  // Đảm bảo đường dẫn đúng
-<<<<<<< HEAD
-=======
-const indexRouter = require('./router/index');
->>>>>>> 47be575 (update)
 // Cấu hình express-session
 app.use(session({
   secret: 'your-secret-key',  // Thay 'your-secret-key' bằng một chuỗi bí mật an toàn
@@ -21,12 +17,7 @@ app.use(session({
 }));
 const cors = require('cors');
 app.use(cors());
-<<<<<<< HEAD
-
 app.use(express.static('public'));
-
-=======
->>>>>>> 47be575 (update)
 // Thay vì dùng 'views', bạn sử dụng 'view' nếu đó là thư mục chứa tệp EJS
 app.set('views', path.join(__dirname, 'views'));  // Sử dụng 'view' thay cho 'views'
 app.set('view engine', 'ejs');
