@@ -1,4 +1,6 @@
+const express = require('express');
 const { OrderModel } = require('../model/order'); // Đảm bảo đường dẫn đúng
+const router = express.Router(); // Khai báo router
 
 // Hiển thị form tạo đơn hàng mới
 const showCreateOrderForm = (req, res) => {
@@ -98,6 +100,7 @@ const editOrder = async (req, res) => {
     }
 };
 
+// Export tất cả controller để sử dụng trong router
 module.exports = {
     showCreateOrderForm,
     createOrder,
@@ -105,4 +108,5 @@ module.exports = {
     deleteOrder,
     showEditOrderForm,
     editOrder,
+    router,  // Đảm bảo export router
 };

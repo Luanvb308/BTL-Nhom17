@@ -5,9 +5,11 @@ const app = express();
 const { connect } = require('./db/index');
 const productRouter = require('./router/product');
 const indexRouter = require('./router/index');
+const methodOverride = require('method-override');
 
 const locationRouter = require('./router/location')
 const orderRouter = require('./router/order');  // Đảm bảo đường dẫn đúng
+app.use(methodOverride('_method'));
 // Cấu hình express-session
 app.use(session({
   secret: 'your-secret-key',  // Thay 'your-secret-key' bằng một chuỗi bí mật an toàn
