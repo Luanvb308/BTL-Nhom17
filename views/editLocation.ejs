@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Location</title>
+    <link rel="stylesheet" href="../public/location1.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Location</h1>
+        
+        <!-- Form chỉnh sửa Location -->
+        <form action="/edit-location/<%= location._id %>" method="POST">
+            <div>
+                <label for="position">Position:</label>
+                <input type="text" id="position" name="position" value="<%= location.position %>" required>
+            </div>
+            <div>
+                <label for="map">Map:</label>
+                <input type="text" id="map" name="map" value="<%= location.map %>" required>
+            </div>
+            <div>
+                <label for="sdt">Phone:</label>
+                <input type="text" id="sdt" name="sdt" value="<%= location.sdt %>" required>
+            </div>
+            <div>
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" value="<%= location.city %>" required>
+            </div>
+            <div>
+                <button type="submit">Update Location</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
