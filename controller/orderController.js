@@ -17,7 +17,7 @@ const createOrder = async (req, res) => {
             month,
         });
         await newOrder.save(); // Lưu đơn hàng vào database
-        res.redirect('/order'); // Điều hướng về trang danh sách đơn hàng sau khi tạo thành công
+        res.redirect('/orders'); // Điều hướng về trang danh sách đơn hàng sau khi tạo thành công
     } catch (error) {
         console.error(error);
         res.status(500).send('Có lỗi xảy ra khi tạo đơn hàng');
@@ -29,17 +29,17 @@ const listOrders = async (req, res) => {
     try {
         const orders = await OrderModel.find();
 
-        // Tính toán doanh thu theo tháng
-        const revenueByMonth = new Array(12).fill(0);
+        const revenueByMonth = new Array(12).fill(0); // Mảng chứa tổng doanh thu từng tháng
 
+        // Tính tổng doanh thu cho từng tháng
         orders.forEach(order => {
             const month = order.month - 1; // Giảm 1 vì mảng bắt đầu từ 0
-            revenueByMonth[month] += order.total;
+            revenueByMonth[month] += order.total; // Cộng tổng tiền vào tháng tương ứng
         });
 
-        const revenueByMonthInThousands = revenueByMonth.map(revenue => revenue / 1000); // Chia cho 1000
+        const revenueByMonthInThousands = revenueByMonth.map(revenue => revenue / 1000);  // Chia cho 1000
 
-        res.render('order', { orders, revenueByMonthInThousands });
+        res.render('order', { orders, revenueByMonthInThousands }); // Gửi dữ liệu vào view
     } catch (error) {
         console.error(error);
         res.status(500).send('Có lỗi xảy ra khi lấy dữ liệu');
@@ -91,7 +91,7 @@ const editOrder = async (req, res) => {
             return res.status(404).send('Order not found');
         }
 
-        res.redirect('/order'); // Chuyển hướng về trang danh sách orders
+        res.redirect('/orders'); // Chuyển hướng về trang danh sách orders
     } catch (error) {
         console.error('Error updating order:', error);
         res.status(500).send('Error updating order');
