@@ -6,7 +6,7 @@ body {
     background-color: #f4f4f4;
 }
 
-.top-menu {
+/* .top-menu {
     background-color: #333;
     color: white;
     padding: 10px 20px;
@@ -33,6 +33,39 @@ body {
 .top-menu ul li a:hover {
     background-color: #575757;
     border-radius: 5px;
+} */
+ /* Đặt style cho menu trên cùng */
+.top-menu {
+    background-color: #333;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.top-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.top-menu ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.top-menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.top-menu ul li a:hover {
+    color: #1abc9c;
 }
 
 /* Container chính */
@@ -139,26 +172,6 @@ button:nth-child(2):hover {
     margin-bottom: 20px;
 }
 
-.actions button {
-    background-color: #28a745; /* Màu xanh lá */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease;
-}
-
-.actions button a {
-    color: white;
-    text-decoration: none;
-}
-
-.actions button:hover {
-    background-color: #218838; /* Màu xanh đậm hơn khi hover */
-}
 /* Nút "Create Location" */
 button.create-location {
     background-color: #28a745; /* Màu xanh lá */
@@ -169,9 +182,16 @@ button.create-location {
     border-radius: 8px; /* Bo tròn các góc */
     cursor: pointer; /* Thay đổi con trỏ khi di chuột vào nút */
     transition: background-color 0.3s, transform 0.2s; /* Hiệu ứng chuyển màu nền và phóng to */
+    text-align: center;
+    display: inline-block;
+    text-transform: uppercase; /* Viết hoa chữ */
 }
 
 /* Hiệu ứng khi di chuột vào nút */
+a{
+    text-decoration: none;
+    color: while;
+}
 button.create-location:hover {
     background-color: #218838; /* Màu nền khi hover */
     transform: scale(1.05); /* Làm nút phóng to khi hover */
@@ -182,3 +202,12 @@ button.create-location:active {
     transform: scale(0.98); /* Làm nút nhỏ lại khi nhấn */
 }
 
+/* Hiệu ứng khi nút không có focus */
+button.create-location:focus {
+    outline: none; /* Loại bỏ đường viền focus */
+}
+
+/* Thêm hiệu ứng ánh sáng xung quanh khi nút được hover */
+button.create-location:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng shadow */
+}

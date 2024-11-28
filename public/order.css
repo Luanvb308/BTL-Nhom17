@@ -155,3 +155,45 @@ canvas {
     max-width: 100%;
     height: auto;
 }
+/*  */
+
+
+.table-container {
+    max-height: 400px; /* Giới hạn chiều cao bảng */
+    overflow-y: auto; /* Kích hoạt cuộn theo trục dọc */
+    border: 1px solid #ddd; /* Đường viền xung quanh bảng */
+}
+
+table {
+    width: 100%; /* Chiếm toàn bộ chiều ngang */
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Đường kẻ ngang */
+}
+
+table th {
+    background-color: #f4f4f4; /* Màu nền cho header */
+    color: #000; /* Màu chữ đen */
+    position: sticky; /* Giữ header cố định */
+    top: 0;
+    z-index: 2;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.table-container::-webkit-scrollbar {
+    width: 8px; /* Chiều rộng thanh cuộn */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #888; /* Màu của thanh cuộn */
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Màu khi hover */
+}
