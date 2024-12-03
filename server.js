@@ -38,7 +38,7 @@ app.use('/', indexRouter);
 app.use('/',productRouter);
 app.use('/product', productRouter);
 // Sử dụng router
-app.use('/order', orderRouter);
+app.use('/', orderRouter);
 app.use('/', employeeRoutes);
 // Khởi động server
 const PORT = 3000;

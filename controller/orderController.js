@@ -107,6 +107,6 @@ module.exports = {
     listOrders,
     deleteOrder,
     showEditOrderForm,
-    editOrder,
-    router,  // Đảm bảo export router
+    editOrder
+     // Đảm bảo export router
 };
