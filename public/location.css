@@ -1,0 +1,213 @@
+/* Đặt lại một số kiểu cơ bản */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* .top-menu {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+}
+
+.top-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.top-menu ul li {
+    display: inline;
+}
+
+.top-menu ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+.top-menu ul li a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+} */
+ /* Đặt style cho menu trên cùng */
+.top-menu {
+    background-color: #333;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.top-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.top-menu ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.top-menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.top-menu ul li a:hover {
+    color: #1abc9c;
+}
+
+/* Container chính */
+.container {
+    margin: 20px auto;
+    max-width: 90%;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Table */
+.table-container {
+    overflow-x: auto; /* Đảm bảo bảng không tràn ngang */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+thead {
+    background-color: #007bff;
+    color: white;
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    white-space: nowrap; /* Không xuống dòng */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Thu gọn cột Map */
+td:nth-child(2), 
+th:nth-child(2) {
+    max-width: 200px; /* Đặt giới hạn chiều rộng */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Thu gọn nếu nội dung dài */
+}
+
+/* Nút chỉnh sửa và xóa */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:nth-child(2) {
+    background-color: #dc3545;
+}
+
+button:nth-child(2):hover {
+    background-color: #c82333;
+}
+
+/* Đảm bảo bảng luôn vừa màn hình */
+@media screen and (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    td:nth-child(2), 
+    th:nth-child(2) {
+        max-width: 150px;
+    }
+}
+.actions {
+    text-align: right; /* Canh nút sang phải */
+    margin-bottom: 20px;
+}
+
+/* Nút "Create Location" */
+button.create-location {
+    background-color: #28a745; /* Màu xanh lá */
+    color: white;
+    padding: 12px 25px; /* Khoảng cách giữa các chữ và viền nút */
+    font-size: 16px;
+    border: none;
+    border-radius: 8px; /* Bo tròn các góc */
+    cursor: pointer; /* Thay đổi con trỏ khi di chuột vào nút */
+    transition: background-color 0.3s, transform 0.2s; /* Hiệu ứng chuyển màu nền và phóng to */
+    text-align: center;
+    display: inline-block;
+    text-transform: uppercase; /* Viết hoa chữ */
+}
+
+/* Hiệu ứng khi di chuột vào nút */
+a{
+    text-decoration: none;
+    color: while;
+}
+button.create-location:hover {
+    background-color: #218838; /* Màu nền khi hover */
+    transform: scale(1.05); /* Làm nút phóng to khi hover */
+}
+
+/* Hiệu ứng khi nút bị nhấn */
+button.create-location:active {
+    transform: scale(0.98); /* Làm nút nhỏ lại khi nhấn */
+}
+
+/* Hiệu ứng khi nút không có focus */
+button.create-location:focus {
+    outline: none; /* Loại bỏ đường viền focus */
+}
+
+/* Thêm hiệu ứng ánh sáng xung quanh khi nút được hover */
+button.create-location:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng shadow */
+}

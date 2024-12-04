@@ -61,10 +61,8 @@ const addProduct = async (req, res) => {
         const newProduct = new Product(req.body);
         await newProduct.save();
         res.redirect('product');
-        res.status(201).json({ message: 'Product added successfully' });
     } catch (error) {
         console.error(error);
-        res.status(400).json({ message: 'Error adding product', error });
     }
 };
 
@@ -174,7 +172,6 @@ const updateProduct = async (req, res) => {
         res.redirect('/product'); // Quay lại danh sách sản phẩm sau khi cập nhật
     } catch (error) {
         console.error('Error updating product:', error);
-        res.status(500).send('Internal Server Error');
     }
 };
 
