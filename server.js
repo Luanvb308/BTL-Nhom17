@@ -7,6 +7,15 @@ const productRouter = require('./router/product');
 const indexRouter = require('./router/index');
 const employeeRoutes = require('./router/employee'); 
 const orderRouter = require('./router/order');  // Đảm bảo đường dẫn đúng
+const authRouter = require('./router/authRoutes')
+const cartRouter = require('./router/cart')
+const province = require('./router/provinceRoutes')
+const districRouter = require('./router/districtRouter')
+const wardRouter = require('./router/wardRouter')
+const shippingRouter = require('./router/shippingRouter')
+
+
+
 // Cấu hình express-session
 app.use(session({
   secret: 'your-secret-key',  // Thay 'your-secret-key' bằng một chuỗi bí mật an toàn
@@ -40,6 +49,15 @@ app.use('/product', productRouter);
 // Sử dụng router
 app.use('/', orderRouter);
 app.use('/', employeeRoutes);
+
+app.use('/api/auth', authRouter);
+app.use('/',cartRouter)
+app.use('/', province)
+app.use('/', districRouter)
+app.use('/', wardRouter)
+app.use('/', shippingRouter)
+
+
 // Khởi động server
 const PORT = 3000;
 app.listen(PORT, () => {

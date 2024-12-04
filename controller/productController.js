@@ -10,6 +10,26 @@ const getProducts = async (req, res) => {
         res.status(500).send('Lỗi server');
     }
 };
+// Lấy chi tiết sản phẩm theo ID
+const getProductById = async (req, res) => {
+    const { id } = req.params; // Lấy ID từ tham số URL
+
+    try {
+        // Tìm sản phẩm theo ID
+        const product = await Product.findById(id);
+
+        // Nếu sản phẩm không tồn tại
+        if (!product) {
+            return res.status(404).json({ message: 'Sản phẩm không tìm thấy' });
+        }
+
+        // Trả về chi tiết sản phẩm
+        res.status(200).json(product);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Lỗi server khi lấy sản phẩm' });
+    }
+};
 
 // Hàm render trang sản phẩm
 const showProductPage = async (req, res) => {
@@ -23,18 +43,18 @@ const showProductPage = async (req, res) => {
     }
 };
 
-const getProductById = async (productId) => {
-    if (!mongoose.Types.ObjectId.isValid(productId)) {
-        return null; // Hoặc throw error tùy theo logic của bạn
-    }
-    try {
-        const product = await Product.findById(productId); // Tìm sản phẩm theo ID
-        return product;
-    } catch (error) {
-        console.error('Lỗi khi lấy sản phẩm theo ID:', error);
-        return null;
-    }
-};
+// const getProductById = async (productId) => {
+//     if (!mongoose.Types.ObjectId.isValid(productId)) {
+//         return null; // Hoặc throw error tùy theo logic của bạn
+//     }
+//     try {
+//         const product = await Product.findById(productId); // Tìm sản phẩm theo ID
+//         return product;
+//     } catch (error) {
+//         console.error('Lỗi khi lấy sản phẩm theo ID:', error);
+//         return null;
+//     }
+// };
 
 // Hàm render trang chi tiết sản phẩm
 // Hàm xử lý yêu cầu cho trang chi tiết sản phẩm

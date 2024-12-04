@@ -16,4 +16,5 @@ router.get('/addProduct', ProductController.showAddProductPage);
 router.post('/addProduct', ProductController.addProduct);
 
 router.get('/api/products', ProductController.getProducts);
+router.get('/api/products/:id', ProductController.getProductById);
 module.exports = router;
