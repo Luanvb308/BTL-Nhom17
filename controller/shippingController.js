@@ -4,17 +4,16 @@ const fetch = require('node-fetch');  // Import thư viện fetch để gửi y�
 exports.calculateShippingFee = async (req, res) => {
     try {
         // Fix cứng giá trị các tham số
-        const fixedServiceId = 1; // Giả sử bạn chọn dịch vụ ID là 1 (Express)
-        const fixedServiceTypeId = 1; // Mặc định là Express nếu không có service_id
-        const fixedInsuranceValue = 100000; // Ví dụ giá trị bảo hiểm
-        const fixedCoupon = ""; // Không có mã giảm giá
-        const fixedWeightPerItem = 500; // Trọng lượng của mỗi sản phẩm (gram)
-        const fixedLengthPerItem = 30; // Chiều dài của mỗi sản phẩm (cm)
-        const fixedWidthPerItem = 20; // Chiều rộng của mỗi sản phẩm (cm)
-        const fixedHeightPerItem = 10; // Chiều cao của mỗi sản phẩm (cm)
-
+        const fixedServiceId = 53321; // Giả sử bạn chọn dịch vụ ID là 1 (Express)
+        const fixedInsuranceValue = 500000; // Giá trị bảo hiểm
+        const fixedCoupon = null; // Không có mã giảm giá
+        const fixedWeightPerItem = 1000; // Trọng lượng của mỗi sản phẩm (gram)
+        const fixedLengthPerItem = 15; // Chiều dài của mỗi sản phẩm (cm)
+        const fixedWidthPerItem = 15; // Chiều rộng của mỗi sản phẩm (cm)
+        const fixedHeightPerItem = 15; // Chiều cao của mỗi sản phẩm (cm)
+        const quantity =1;
         // Lấy số lượng sản phẩm từ body request
-        const { quantity, to_ward_code, to_district_id, from_district_id } = req.body;
+        const { to_ward_code, to_district_id, from_district_id } = req.body;
 
         // Kiểm tra các tham số bắt buộc
         if (!quantity || !to_ward_code || !to_district_id || !from_district_id) {
@@ -23,13 +22,13 @@ exports.calculateShippingFee = async (req, res) => {
 
         // Tính toán các thông số tổng
         const totalWeight = fixedWeightPerItem * quantity;  // Trọng lượng tổng (gram)
-        const totalLength = fixedLengthPerItem * quantity;  // Chiều dài tổng (cm)
-        const totalWidth = fixedWidthPerItem * quantity;    // Chiều rộng tổng (cm)
+        const totalLength = fixedLengthPerItem ;  // Chiều dài tổng (cm)
+        const totalWidth = fixedWidthPerItem ;    // Chiều rộng tổng (cm)
         const totalHeight = fixedHeightPerItem * quantity;  // Chiều cao tổng (cm)
 
-        // Lấy token và shop_id từ biến môi trường
-        const token = process.env.GHN_API_TOKEN || "9fa9dedf-aa86-11ef-a89d-dab02cbaab48";
-        const shop_id = process.env.GHN_SHOP_ID || "123456";  // Đảm bảo bạn đã thiết lập shop_id trong .env
+        // Fix token và shop_id
+        const token = "9fa9dedf-aa86-11ef-a89d-dab02cbaab48"; // Giá trị token cố định
+        const shop_id = 5477700; // Giá trị shop_id cố định
 
         if (!token || !shop_id) {
             return res.status(500).json({ message: 'API token or shop_id is not defined in environment variables' });
@@ -38,7 +37,6 @@ exports.calculateShippingFee = async (req, res) => {
         // Xây dựng payload cho yêu cầu gửi đến API GHN
         const payload = {
             service_id: fixedServiceId,
-            service_type_id: fixedServiceTypeId,
             insurance_value: fixedInsuranceValue,
             coupon: fixedCoupon,
             to_ward_code: to_ward_code,
