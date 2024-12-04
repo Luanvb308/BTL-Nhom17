@@ -4,7 +4,6 @@ const { userModel } = require('../model/User');
 const Cart = require('../model/cart');
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
-
     // Kiểm tra nếu email không tồn tại
     const user = await userModel.findOne({ email });
     if (!user) {

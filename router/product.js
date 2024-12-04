@@ -8,7 +8,6 @@ router.get('/product/:id', ProductController.getProductDetailsPage);
 router.get('/product/delete/:id', ProductController.deleteProduct);
 router.get('/search-products', ProductController.searchProducts);
 
-
 router.get('/product/update/:id', ProductController.getUpdateProductForm);
 router.post('/product/update/:id', ProductController.updateProduct);
 
