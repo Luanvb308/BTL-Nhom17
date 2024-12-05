@@ -48,7 +48,7 @@ app.use("/product", productRouter);
 app.use("/", orderRouter);
 app.use("/", employeeRoutes);
 
-app.use("/api/auth", authRouter);
+app.use("/api", authRouter);
 app.use("/", cartRouter);
 app.use("/", province);
 app.use("/", districRouter);
