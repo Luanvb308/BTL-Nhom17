@@ -1,40 +1,4 @@
-/* Đặt lại một số kiểu cơ bản */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-/* .top-menu {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-}
-
-.top-menu ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-}
-
-.top-menu ul li {
-    display: inline;
-}
-
-.top-menu ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-}
-
-.top-menu ul li a:hover {
-    background-color: #575757;
-    border-radius: 5px;
-} */
- /* Đặt style cho menu trên cùng */
+/* Đặt style cho menu trên cùng */
 .top-menu {
     background-color: #333;
     padding: 10px 0;
@@ -68,146 +32,184 @@ body {
     color: #1abc9c;
 }
 
-/* Container chính */
+/* Tổng thể bố cục trang */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    padding-top: 60px; /* Để tránh đè lên menu */
+}
+
+/* Container chứa cả bảng và bản đồ */
 .container {
+    width: 90%;
+    max-width: 1200px;
     margin: 20px auto;
-    max-width: 90%;
-    background: white;
     padding: 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Phần chứa bản đồ */
+.map-container {
+    height: 300px;  /* Chiều cao cố định cho bản đồ */
+    margin-bottom: 20px;  /* Khoảng cách giữa bản đồ và bảng */
+    overflow: hidden;  /* Ẩn phần của bản đồ vượt quá */
     border-radius: 8px;
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+/* Nếu bạn đang sử dụng iframe cho bản đồ, style thêm cho iframe */
+.map-container iframe {
+    width: 100%;  /* Chiều rộng đầy đủ */
+    height: 100%;  /* Chiều cao đầy đủ */
+    border: none;  /* Không viền */
 }
 
-/* Table */
+/* Phần chứa bảng */
 .table-container {
-    overflow-x: auto; /* Đảm bảo bảng không tràn ngang */
+    max-height: 400px;  /* Giới hạn chiều cao của bảng */
+    overflow-y: auto;   /* Cuộn dọc nếu bảng dài */
+    border: 1px solid #ddd;  /* Đường viền cho bảng */
+    padding-right: 10px;  /* Khoảng cách bên phải cho thanh cuộn */
 }
 
+/* Định dạng bảng dữ liệu */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 16px;
-    text-align: left;
+    width: 100%;  /* Chiếm toàn bộ chiều rộng */
+    border-collapse: collapse;  /* Xóa đường viền giữa các ô */
 }
 
+/* Đặt giới hạn chiều rộng cho ô trong bảng */
+table td {
+    max-width: 200px;  /* Giới hạn chiều rộng tối đa cho mỗi ô */
+    overflow: hidden;   /* Ẩn phần nội dung vượt ra ngoài chiều rộng của ô */
+    text-overflow: ellipsis; /* Hiển thị dấu '...' nếu nội dung quá dài */
+    white-space: nowrap; /* Ngừng dòng khi nội dung quá dài */
+    padding: 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Có thể thêm kiểu cho các ô có nội dung dài hơn (ví dụ: bản đồ) */
+table td.long-content {
+    max-width: 300px;  /* Chiều rộng tối đa riêng cho ô chứa thông tin dài */
+}
+
+/* Định dạng tiêu đề bảng */
 thead {
-    background-color: #007bff;
+    background-color: #1abc9c;
     color: white;
+    position: sticky;  /* Cố định tiêu đề bảng khi cuộn */
+    top: 0;
+    z-index: 2;
 }
 
-th, td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
-
-th {
-    white-space: nowrap; /* Không xuống dòng */
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Thu gọn cột Map */
-td:nth-child(2), 
-th:nth-child(2) {
-    max-width: 200px; /* Đặt giới hạn chiều rộng */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; /* Thu gọn nếu nội dung dài */
-}
-
-/* Nút chỉnh sửa và xóa */
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
+thead th {
+    padding: 10px;
+    text-align: left;
     font-size: 14px;
 }
 
+/* Dòng lẻ có màu nền khác */
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Các nút trong bảng */
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: opacity 0.3s ease;
+}
+
 button:hover {
-    background-color: #0056b3;
+    opacity: 0.9;
 }
 
-button:nth-child(2) {
-    background-color: #dc3545;
+button:first-child {
+    background-color: #3498db;
+    color: white;
 }
 
-button:nth-child(2):hover {
-    background-color: #c82333;
+button:last-child {
+    background-color: #e74c3c;
+    color: white;
 }
 
-/* Đảm bảo bảng luôn vừa màn hình */
-@media screen and (max-width: 768px) {
-    table {
-        font-size: 14px;
-    }
-
-    th, td {
-        padding: 8px;
-    }
-
-    td:nth-child(2), 
-    th:nth-child(2) {
-        max-width: 150px;
-    }
+/* Các kiểu phần tử khác */
+.table-container::-webkit-scrollbar {
+    width: 8px;  /* Chiều rộng thanh cuộn */
 }
-.actions {
-    text-align: right; /* Canh nút sang phải */
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #888;  /* Màu của thanh cuộn */
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #555;  /* Màu khi hover */
+}
+
+/* Phần tiêu đề và nút hành động */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
 }
 
-/* Nút "Create Location" */
-button.create-location {
-    background-color: #28a745; /* Màu xanh lá */
+.header h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.actions button {
+    background: #1abc9c;
     color: white;
-    padding: 12px 25px; /* Khoảng cách giữa các chữ và viền nút */
-    font-size: 16px;
     border: none;
-    border-radius: 8px; /* Bo tròn các góc */
-    cursor: pointer; /* Thay đổi con trỏ khi di chuột vào nút */
-    transition: background-color 0.3s, transform 0.2s; /* Hiệu ứng chuyển màu nền và phóng to */
-    text-align: center;
-    display: inline-block;
-    text-transform: uppercase; /* Viết hoa chữ */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
 }
 
-/* Hiệu ứng khi di chuột vào nút */
-a{
+.actions button:hover {
+    background: #16a085;
+}
+
+.actions button a {
     text-decoration: none;
-    color: while;
+    color: white;
 }
-button.create-location:hover {
-    background-color: #218838; /* Màu nền khi hover */
-    transform: scale(1.05); /* Làm nút phóng to khi hover */
-}
-
-/* Hiệu ứng khi nút bị nhấn */
-button.create-location:active {
-    transform: scale(0.98); /* Làm nút nhỏ lại khi nhấn */
+.actions {
+    display: flex;
+    justify-content: flex-end;  /* Căn chỉnh tất cả các nút sang bên phải */
 }
 
-/* Hiệu ứng khi nút không có focus */
-button.create-location:focus {
-    outline: none; /* Loại bỏ đường viền focus */
+.actions button {
+    background: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
 }
 
-/* Thêm hiệu ứng ánh sáng xung quanh khi nút được hover */
-button.create-location:hover {
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng shadow */
+/* Hiệu ứng hover cho nút */
+.actions button:hover {
+    background: #16a085;
+}
+
+/* Đảm bảo liên kết trong nút có màu sắc phù hợp */
+.actions button a {
+    text-decoration: none;
+    color: white;
 }
