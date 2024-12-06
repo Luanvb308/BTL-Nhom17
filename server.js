@@ -9,6 +9,7 @@ const employeeRoutes = require('./router/employee');
 const orderRouter = require('./router/order');  // Đảm bảo đường dẫn đúng
 const authRouter = require('./router/authRoutes')
 const cartRouter = require('./router/cart')
+const locationRouter = require('./router/location')
 const province = require('./router/provinceRoutes')
 const districRouter = require('./router/districtRouter')
 const wardRouter = require('./router/wardRouter')
@@ -56,6 +57,7 @@ app.use('/', province)
 app.use('/', districRouter)
 app.use('/', wardRouter)
 app.use('/', shippingRouter)
+app.use('/', locationRouter)
 
 
 // Khởi động server
