@@ -1,6 +1,8 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
+
+
 const app = express();
 const { connect } = require('./db/index');
 const productRouter = require('./router/product');
@@ -14,6 +16,7 @@ const province = require('./router/provinceRoutes')
 const districRouter = require('./router/districtRouter')
 const wardRouter = require('./router/wardRouter')
 const shippingRouter = require('./router/shippingRouter')
+const userRouter = require('./router/user')
 
 
 
@@ -51,13 +54,14 @@ app.use('/product', productRouter);
 app.use('/', orderRouter);
 app.use('/', employeeRoutes);
 
-app.use('/api/auth', authRouter);
+app.use('/api/', authRouter);
 app.use('/',cartRouter)
 app.use('/', province)
 app.use('/', districRouter)
 app.use('/', wardRouter)
 app.use('/', shippingRouter)
 app.use('/', locationRouter)
+app.use('/', userRouter)
 
 
 // Khởi động server
