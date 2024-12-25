@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link rel="stylesheet" href="order.css">
+</head>
+<body>
+    <!-- Menu trên cùng -->
+    <div class="top-menu">
+        <ul>
+            <li><a href="/user">User</a></li>
+            <li><a href="/location">Location</a></li>
+            <li><a href="/employee">Employee</a></li>
+            <li><a href="/product">Product</a></li>
+            <li><a href="/orders">Order</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>User List</h1>
+        </div>
+
+        <!-- Bảng danh sách người dùng -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user => { %>
+                        <tr id="user-<%= user._id %>">
+                            <td><%= user.username %></td>
+                            <td><%= user.password %></td>
+                            <td><%= user.email %></td>
+                            <td>
+                                <form id="delete-user-form-<%= user._id %>" onsubmit="deleteUser('<%= user._id %>'); return false;">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Hàm xóa người dùng khi nhấn nút "Delete"
+        function deleteUser(userId) {
+            const row = document.getElementById('user-' + userId);  // Lấy dòng của người dùng cần xóa
+            fetch(`/delete-user/${userId}`, {
+                method: 'DELETE',  // Sử dụng phương thức DELETE
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Nếu xóa thành công, xóa dòng tương ứng trong bảng
+                    row.remove();
+                } else {
+                    alert('Error deleting user.');
+                }
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                alert('Error deleting user.');
+            });
+        }
+    </script>
+</body>
+</html>

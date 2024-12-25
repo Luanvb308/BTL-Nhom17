@@ -1,6 +1,5 @@
 const express = require('express');
 const { OrderModel } = require('../model/order'); // Đảm bảo đường dẫn đúng
-const router = express.Router(); // Khai báo router
 
 // Hiển thị form tạo đơn hàng mới
 const showCreateOrderForm = (req, res) => {

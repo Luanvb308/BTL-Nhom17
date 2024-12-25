@@ -1,60 +1,97 @@
-<!-- employee.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Employee List</title>
-  <link rel="stylesheet" href="/employee.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <link rel="stylesheet" href="order.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Employee List</h1>
-    <div class="back-to-index-btn-container">
-      <a href="/">
-        <button class="btn back-to-index-btn">Back to Home</button>
-      </a>
-    </div>
-    
-    <!-- Nút thêm nhân viên -->
-    <div class="add-new-btn-container">
-      <a href="/employee/new">
-        <button class="btn add-new-btn">Add New Employee</button>
-      </a>
+    <!-- Menu trên cùng -->
+    <div class="top-menu">
+        <ul>
+            <li><a href="/user">User</a></li>
+            <li><a href="/location">Location</a></li>
+            <li><a href="/employee">Employee</a></li>
+            <li><a href="/product">Product</a></li>
+            <li><a href="/orders">Order</a></li>
+        </ul>
     </div>
 
-    <!-- Bảng nhân viên -->
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>Age</th>
-          <th>Position</th>
-          <th>Shop</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% employees.forEach(employee => { %>
-          <tr>
-            <td><%= employee.name %></td>
-            <td><%= employee.phone %></td>
-            <td><%= employee.age %></td>
-            <td><%= employee.position %></td>
-            <td><%= employee.shopName %></td>
-            <td class="action-buttons">
-              <a href="/employee/edit/<%= employee._id %>">
-                <button class="btn edit-btn">Edit</button>
-              </a>
-              <a href="/employee/delete/<%= employee._id %>">
-                <button class="btn delete-btn">Delete</button>
-              </a>
-            </td>
-          </tr>
-        <% }) %>
-      </tbody>
-    </table>
-  </div>
+    <div class="container">
+        <div class="header">
+            <h1>Employee List</h1>
+        </div>
+
+        <!-- Bảng danh sách nhân viên -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Age</th>
+                        <th>Position</th>
+                        <th>Shop</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% employees.forEach(employee => { %>
+                        <tr id="employee-<%= employee._id %>">
+                            <td><%= employee.name %></td>
+                            <td><%= employee.phone %></td>
+                            <td><%= employee.age %></td>
+                            <td><%= employee.position %></td>
+                            <td><%= employee.shopName %></td>
+                            <td class="action-buttons">
+                                <!-- Nút chỉnh sửa -->
+                                <a href="/employee/edit/<%= employee._id %>">
+                                    <button class="btn edit-btn">Edit</button>
+                                </a>
+                                <!-- Form xóa -->
+                                <form id="delete-employee-form-<%= employee._id %>" onsubmit="deleteEmployee('<%= employee._id %>'); return false;">
+                                    <button type="submit" class="btn delete-btn">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Nút thêm nhân viên -->
+        <div class="add-new-btn-container">
+            <a href="/employee/new">
+                <button class="btn add-new-btn">Add New Employee</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Hàm xóa nhân viên khi nhấn nút "Delete"
+        function deleteEmployee(employeeId) {
+            const row = document.getElementById('employee-' + employeeId);  // Lấy dòng của nhân viên cần xóa
+            fetch(`/employee/delete/${employeeId}`, {
+                method: 'DELETE',  // Sử dụng phương thức DELETE
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Nếu xóa thành công, xóa dòng tương ứng trong bảng
+                    row.remove();
+                } else {
+                    alert('Error deleting employee.');
+                }
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                alert('Error deleting employee.');
+            });
+        }
+    </script>
 </body>
 </html>
