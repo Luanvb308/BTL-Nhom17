@@ -14,7 +14,8 @@ exports.calculateShippingFee = async (req, res) => {
         const quantity =1;
         const from_district_id = 1822
         // Lấy số lượng sản phẩm từ body request
-        const { to_ward_code, to_district_id } = req.body;
+        //lấy id từ tham số url
+        const { to_district_id, to_ward_code } = req.params;
 
         // Kiểm tra các tham số bắt buộc
         if (!quantity || !to_ward_code || !to_district_id) {
@@ -24,7 +25,7 @@ exports.calculateShippingFee = async (req, res) => {
         // Tính toán các thông số tổng
         const totalWeight = fixedWeightPerItem * quantity;  // Trọng lượng tổng (gram)
         const totalLength = fixedLengthPerItem ;  // Chiều dài tổng (cm)
-        const totalWidth = fixedWidthPerItem ;    // Chiều rộng tổng (cm)
+        const totalWidth = fixedWidthPerItem ;    // Chiều rộng tổng (cm)ç
         const totalHeight = fixedHeightPerItem * quantity;  // Chiều cao tổng (cm)
 
         // Fix token và shop_id
