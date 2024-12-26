@@ -7,16 +7,17 @@ exports.calculateShippingFee = async (req, res) => {
         const fixedServiceId = 53321; // Giả sử bạn chọn dịch vụ ID là 1 (Express)
         const fixedInsuranceValue = 500000; // Giá trị bảo hiểm
         const fixedCoupon = null; // Không có mã giảm giá
-        const fixedWeightPerItem = 1000; // Trọng lượng của mỗi sản phẩm (gram)
-        const fixedLengthPerItem = 15; // Chiều dài của mỗi sản phẩm (cm)
+        const fixedWeightPerItem = 10000; // Trọng lượng của mỗi sản phẩm (gram)
+        const fixedLengthPerItem = 150; // Chiều dài của mỗi sản phẩm (cm)
         const fixedWidthPerItem = 15; // Chiều rộng của mỗi sản phẩm (cm)
         const fixedHeightPerItem = 15; // Chiều cao của mỗi sản phẩm (cm)
         const quantity =1;
+        const from_district_id = 1822
         // Lấy số lượng sản phẩm từ body request
-        const { to_ward_code, to_district_id, from_district_id } = req.body;
+        const { to_ward_code, to_district_id } = req.body;
 
         // Kiểm tra các tham số bắt buộc
-        if (!quantity || !to_ward_code || !to_district_id || !from_district_id) {
+        if (!quantity || !to_ward_code || !to_district_id) {
             return res.status(400).json({ message: 'Quantity, to_ward_code, to_district_id, and from_district_id are required' });
         }
 
@@ -39,13 +40,13 @@ exports.calculateShippingFee = async (req, res) => {
             service_id: fixedServiceId,
             insurance_value: fixedInsuranceValue,
             coupon: fixedCoupon,
-            to_ward_code: to_ward_code,
-            to_district_id: to_district_id,
             from_district_id: from_district_id,
-            weight: totalWeight,
+            to_district_id: to_district_id,
+            to_ward_code: to_ward_code,
+            height: totalHeight,
             length: totalLength,
+            weight: totalWeight,
             width: totalWidth,
-            height: totalHeight
         };
 
         // Gửi yêu cầu tính phí tới API GHN

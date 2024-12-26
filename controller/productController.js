@@ -35,27 +35,13 @@ const getProductById = async (req, res) => {
 const showProductPage = async (req, res) => {
     try {
         const products = await Product.find(); // Lấy tất cả sản phẩm từ MongoDB
-        console.log('Products:', products); // Kiểm tra dữ liệu sản phẩm
+        // console.log('Products:', products); // Kiểm tra dữ liệu sản phẩm
         res.render('product', { products });  // Render trang product.ejs với danh sách sản phẩm
     } catch (error) {
         console.error('Lỗi khi lấy dữ liệu:', error);
         res.status(500).send('Lỗi server');
     }
 };
-
-// const getProductById = async (productId) => {
-//     if (!mongoose.Types.ObjectId.isValid(productId)) {
-//         return null; // Hoặc throw error tùy theo logic của bạn
-//     }
-//     try {
-//         const product = await Product.findById(productId); // Tìm sản phẩm theo ID
-//         return product;
-//     } catch (error) {
-//         console.error('Lỗi khi lấy sản phẩm theo ID:', error);
-//         return null;
-//     }
-// };
-
 // Hàm render trang chi tiết sản phẩm
 // Hàm xử lý yêu cầu cho trang chi tiết sản phẩm
 const getProductDetailsPage = async (req, res) => {

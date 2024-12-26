@@ -1,5 +1,6 @@
 const express = require('express');
 const { OrderModel } = require('../model/order'); // Đảm bảo đường dẫn đúng
+const Cart = require('../model/cart');
 
 // Hiển thị form tạo đơn hàng mới
 const showCreateOrderForm = (req, res) => {
@@ -99,6 +100,32 @@ const editOrder = async (req, res) => {
     }
 };
 
+//tao don hang moi
+const createNewOrder = async (req, res) => {
+    try {
+        const { username, position, total,quantity } = req.body;
+        // Lấy tháng hiện tại
+        const month = new Date().getMonth() + 1;
+
+        // Tạo đơn hàng mới
+        const newOrder = new OrderModel({
+            username,
+            position,
+            quantity,
+            total,
+            month,
+        });
+
+        // Lưu đơn hàng vào cơ sở dữ liệu
+        await newOrder.save();
+
+        res.status(201).json({ message: 'Order created successfully!', order: newOrder });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to create order', details: error.message });
+    }
+};
+
 // Export tất cả controller để sử dụng trong router
 module.exports = {
     showCreateOrderForm,
@@ -106,6 +133,7 @@ module.exports = {
     listOrders,
     deleteOrder,
     showEditOrderForm,
-    editOrder
+    editOrder,
+    createNewOrder
      // Đảm bảo export router
 };

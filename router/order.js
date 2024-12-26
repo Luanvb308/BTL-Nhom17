@@ -19,5 +19,7 @@ router.get('/edit-order/:id', orderController.showEditOrderForm);
 
 // Route để xử lý việc chỉnh sửa đơn hàng
 router.post('/edit-order/:id', orderController.editOrder);
+//api tao don hang moi 
+router.post('/api/create-new-order', orderController.createNewOrder)
 
 module.exports = router;
